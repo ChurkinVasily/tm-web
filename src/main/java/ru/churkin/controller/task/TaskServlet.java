@@ -1,4 +1,4 @@
-package ru.churkin.controller;
+package ru.churkin.controller.task;
 
 import ru.churkin.api.ITaskRepository;
 import ru.churkin.entity.Task;
@@ -25,8 +25,10 @@ public class TaskServlet extends HttpServlet {
 
         List<Task> taskAll = taskRepository.getTaskAll();
         req.setAttribute("allTasks", taskAll);
+        req.setAttribute("t", taskAll.get(0));
 
-        req.getRequestDispatcher("task-list.jsp");
+        req.getRequestDispatcher("/WEB-INF/task-list.jsp").forward(req, resp);
+
 
     }
 

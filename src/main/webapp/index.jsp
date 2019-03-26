@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,9 +5,7 @@
 </head>
 <body>
 
-<h1> ${t} </h1>
-
-
+<h1> hello </h1>
 
 </body>
 </html>
