@@ -8,7 +8,7 @@ public interface ITaskRepository {
 
     void createTask(String name);
 
-    Task findTaskByName(String name);
+    Task findTaskById(String name);
 
     List<Task> getTaskAll();
 

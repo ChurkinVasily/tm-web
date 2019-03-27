@@ -24,17 +24,16 @@ public class TaskRepository implements ITaskRepository {
 
     @Override
     public void createTask(String name) {
-        Task task = new Task(name);
-        taskList.add(task);
+        taskList.add(new Task(name));
     }
 
     @Nullable
     @Override
-    public Task findTaskByName(@NotNull String name) {
+    public Task findTaskById(@NotNull String id) {
         Task task = null;
-        if (name.isEmpty()) return null;
+        if (id.isEmpty()) return null;
         for (Task itask : taskList) {
-            if (itask.getName().equals(name)) task = itask;
+            if (itask.getId().equals(id)) task = itask;
             break;
         }
         return task;
@@ -57,6 +56,12 @@ public class TaskRepository implements ITaskRepository {
 
     @Override
     public void deleteTaskById(String id) {
-
+        if (id.isEmpty()) return;
+        for (Task task : taskList) {
+            if (id.equals(task.getId())) {
+                taskList.remove(task);
+                return;
+            }
+        }
     }
 }

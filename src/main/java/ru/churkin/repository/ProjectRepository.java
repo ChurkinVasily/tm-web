@@ -23,18 +23,25 @@ public class ProjectRepository implements IProjectRepository {
 
     @Override
     public void createProject(String name) {
-
-    }
-
-    @Override
-    public Project findProjectByName(String name) {
-
-        return null;
+        projectList.add(new Project(name));
     }
 
     @Override
     public List<Project> getProjectAll() {
-        return null;
+        return projectList;
+    }
+
+    @Override
+    public Project findProjectById(String id) {
+        if (id.isEmpty()) return null;
+        Project project = null;
+        for (Project iproject : projectList) {
+            if (id.equals(iproject.getId())) {
+                project = iproject;
+                break;
+            }
+        }
+        return project;
     }
 
     @Override
@@ -43,12 +50,13 @@ public class ProjectRepository implements IProjectRepository {
     }
 
     @Override
-    public void deleteProjectByName(String name) {
-
-    }
-
-    @Override
     public void deleteProjectById(String id) {
-
+        if (id.isEmpty()) return;
+        for (Project project : projectList) {
+            if (id.equals(project.getId())) {
+                projectList.remove(project);
+                return;
+            }
+        }
     }
 }
