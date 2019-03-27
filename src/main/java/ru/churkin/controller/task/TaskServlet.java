@@ -4,6 +4,7 @@ import ru.churkin.api.ITaskRepository;
 import ru.churkin.entity.Task;
 import ru.churkin.repository.TaskRepository;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,8 @@ public class TaskServlet extends HttpServlet {
         req.setAttribute("allTasks", taskAll);
         req.setAttribute("t", taskAll.get(0));
 
-        req.getRequestDispatcher("/WEB-INF/task-list.jsp").forward(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-list.jsp");
+        requestDispatcher.forward(req, resp);
 
 
     }
