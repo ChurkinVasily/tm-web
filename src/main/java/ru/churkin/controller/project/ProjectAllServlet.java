@@ -31,7 +31,7 @@ public class ProjectAllServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Project> projectsAll = projectRepository.getProjectAll();
-//
+
         req.setAttribute("allProjects", projectsAll);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/project-list.jsp");

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,8 +22,8 @@
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C">id</th>
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C">Name</th>
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C">Description</th>
-    <th width="00" nowrap="nowrap" align = "center" bgcolor="#F0E68C"></th>
-    <th width="00" nowrap="nowrap" align = "center" bgcolor="#F0E68C" ></th>
+    <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C"></th>
+    <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C" ></th>
     <c:forEach items="${allProjects}" var="project">
         <tr>
             <td>${project.id}</td>

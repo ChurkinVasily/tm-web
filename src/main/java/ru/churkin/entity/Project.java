@@ -15,8 +15,8 @@ public class Project {
     private String id;
     private String name;
     private String description;
-    private Date timeStart;
-    private Date timeFinish;
+    private String timeStart;
+    private String timeFinish;
 
     public Project(String name) {
         this.id = UUID.randomUUID().toString();

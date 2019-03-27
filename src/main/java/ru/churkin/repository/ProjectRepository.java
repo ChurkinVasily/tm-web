@@ -45,8 +45,15 @@ public class ProjectRepository implements IProjectRepository {
     }
 
     @Override
-    public void updateProject(Project Project) {
-
+    public void updateProject(Project project) {
+        String id = project.getId();
+        for (Project proj : projectList) {
+            if (proj.getId().equals(id)){
+                projectList.remove(proj);
+                projectList.add(project);
+                return;
+            }
+        }
     }
 
     @Override
