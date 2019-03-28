@@ -12,19 +12,22 @@
 <h1>Project edit</h1>
 
 <form name="save-p" method="post" action="/project-save">
-   <input type="text" name="id" value>
+
+    <p>
+        <input type="hidden" name="projectId" size="40" value = "${project.id}">
+       </p>
 
    <p><b>Name</b><br>
-    <input type="text" name="projectName" size="40">
+    <input type="text" name="projectName" size="40" value = "${project.name}">
    </p>
    <p><b>Description</b><br>
-       <input type="text" name="projectDescription" size="40">
+       <input type="text" name="projectDescription" size="40" value = "${project.description}">
    </p>
    <p><b>Date start</b><br>
-       <input type="text" name="projectDateStart" size="40">
+       <input type="text" name="projectDateStart" size="40" value = "${project.timeStart}">
    </p>
    <p><b>Date finish</b><br>
-       <input type="text" name="projectDateFin" size="40">
+       <input type="text" name="projectDateFin" size="40" value = "${project.timeFinish}">
    </p>
    <p>
    <input type="submit" value="Save changes">

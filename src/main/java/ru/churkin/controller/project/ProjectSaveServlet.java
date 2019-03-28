@@ -22,10 +22,8 @@ public class ProjectSaveServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        Project project = (Project) req.getAttribute("project")
-//        String projectId = req.getParameter("id");
-//        Project project = projectRepository.findProjectById(projectId);
-        Project project = new Project();
+        String id = req.getParameter("projectId");
+        Project project = projectRepository.findProjectById(id);
 
         project.setName(req.getParameter("projectName"));
         project.setDescription(req.getParameter("projectDescription"));
