@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/project-save")
 public class ProjectSaveServlet extends HttpServlet {
+
+    Logger log = Logger.getLogger(this.getClass().getName());
 
     private ProjectRepository projectRepository;
 
@@ -32,7 +35,6 @@ public class ProjectSaveServlet extends HttpServlet {
 
         projectRepository.updateProject(project);
         resp.sendRedirect("projects");
-
     }
 }
 

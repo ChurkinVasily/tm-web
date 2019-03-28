@@ -28,7 +28,7 @@ public class TaskAllServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Task> taskAll = taskRepository.getTaskAll();
-//
+
         req.setAttribute("allTasks", taskAll);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-list.jsp");

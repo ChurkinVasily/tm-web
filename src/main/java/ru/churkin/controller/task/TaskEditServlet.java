@@ -26,7 +26,7 @@ public class TaskEditServlet extends HttpServlet {
         String taskId = req.getParameter("id");
         Task task = taskRepository.findTaskById(taskId);
 
-        req.setAttribute("taskId", taskId);
+        req.setAttribute("task", task);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-edit.jsp");
         requestDispatcher.forward(req, resp);
     }

@@ -3,6 +3,7 @@ package ru.churkin.repository;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.churkin.api.ITaskRepository;
+import ru.churkin.entity.Project;
 import ru.churkin.entity.Task;
 
 import java.util.ArrayList;
@@ -30,11 +31,13 @@ public class TaskRepository implements ITaskRepository {
     @Nullable
     @Override
     public Task findTaskById(@NotNull String id) {
-        Task task = null;
         if (id.isEmpty()) return null;
+        Task task = null;
         for (Task itask : taskList) {
-            if (itask.getId().equals(id)) task = itask;
-            break;
+            if (id.equals(itask.getId())) {
+                task = itask;
+                break;
+            }
         }
         return task;
     }
@@ -46,6 +49,14 @@ public class TaskRepository implements ITaskRepository {
 
     @Override
     public void updateTask(Task task) {
+        String id = task.getId();
+        for (Task tsk : taskList) {
+            if (tsk.getId().equals(id)){
+                taskList.remove(tsk);
+                taskList.add(tsk);
+                return;
+            }
+        }
 
     }
 

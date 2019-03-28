@@ -14,8 +14,8 @@
 <form name="save-p" method="post" action="/project-save">
 
     <p>
-        <input type="hidden" name="projectId" size="40" value = "${project.id}">
-       </p>
+    <input type="hidden" name="projectId" size="40" value = "${project.id}">
+    </p>
 
    <p><b>Name</b><br>
     <input type="text" name="projectName" size="40" value = "${project.name}">

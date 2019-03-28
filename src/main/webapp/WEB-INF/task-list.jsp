@@ -11,7 +11,7 @@
 <h1>Tasks</h1>
 
 <form name="create-task" method="get" action="/create-task">
-   <p><b>New Project name</b><br>
+   <p><b>New Task name</b><br>
     <input type="text" name="taskName" size="40">
    </p>
    <p><input type="submit" value="Create new Task">
