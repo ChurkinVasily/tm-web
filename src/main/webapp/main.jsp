@@ -7,10 +7,10 @@
 </head>
 <body>
 
-<div> <a href="main">MAIN</a></div>
-<div> <a href="projects">PROJECTS</a></div>
-<div> <a href="tasks">TASKS</a></div>
-
+ <a href="main">MAIN</a> ||
+ <a href="projects">PROJECTS</a> ||
+ <a href="tasks">TASKS</a>
+<div> </div>
 <p align="center" style="font-size: 30px; font-weight: bold"> main page </p>
 
 </body>

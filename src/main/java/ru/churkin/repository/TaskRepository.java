@@ -30,8 +30,10 @@ public class TaskRepository implements ITaskRepository {
     }
 
     @Override
-    public void createTask(String name) {
-        taskList.add(new Task(name));
+    public void createTask(String name) {  ///------ переделать. сделать проверку на ноль в сервлете EDIT task
+        Task task = new Task(name);
+        task.setProjectId("111");
+        taskList.add(task);
     }
 
     @Nullable
@@ -58,9 +60,7 @@ public class TaskRepository implements ITaskRepository {
         if (projectId == null || projectId.isEmpty()) return null;
         List<Task> list = new ArrayList<>();
         for (Task itask : taskList) {
-            System.out.println(itask);
             if (itask.getProjectId().equals(projectId)) {
-                System.out.println("task id : " + itask.getId());
                 list.add(itask);
             }
         }

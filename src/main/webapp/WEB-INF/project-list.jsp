@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<div> <a href="main">MAIN</a></div>
-<div> <a href="projects">PROJECTS</a></div>
-<div> <a href="tasks">TASKS</a></div>
+ <a href="main">MAIN</a> ||
+ <a href="projects">PROJECTS</a> ||
+ <a href="tasks">TASKS</a>
 
 <div align="center">
 <h1>Projects</h1>
