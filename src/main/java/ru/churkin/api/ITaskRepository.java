@@ -12,6 +12,8 @@ public interface ITaskRepository {
 
     List<Task> getTaskAll();
 
+    List<Task> getByProjectId(String projectId);
+
     void updateTask(Task task);
 
     void deleteTaskByName(String name);
@@ -19,9 +21,5 @@ public interface ITaskRepository {
     void deleteTaskById(String id);
 
 //    void deleteTaskByNameForUser(String name, String userId);
-
-
-    /// test commit
-
 
 }

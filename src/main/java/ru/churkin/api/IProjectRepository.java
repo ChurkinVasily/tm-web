@@ -16,5 +16,7 @@ public interface IProjectRepository {
 
     Project findProjectById(String id);
 
+    Project findProjectByName(String id);
+
 
 }

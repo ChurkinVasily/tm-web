@@ -25,6 +25,15 @@
        <input type="text" name="taskDescription" size="40" value = "${task.description}">
    </p>
 
+      <p><b>Project</b><br>
+           <select style="width: 380px; height: 25px" name="projectName">
+                    <option selected style="color: maroon; font-weight: bold">${currentProject.name}</option>
+                    <c:forEach items="${allProjects}" var="project">
+                         <option >${project.name}</option>
+                    </c:forEach>
+                     </select>
+                 </p>
+
    <p>
    <input type="submit" value="Save changes">
    </p>

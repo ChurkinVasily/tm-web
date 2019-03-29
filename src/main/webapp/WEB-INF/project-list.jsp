@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<div> <a href="main">MAIN</a></div>
+<div> <a href="projects">PROJECTS</a></div>
+<div> <a href="tasks">TASKS</a></div>
+
 <div align="center">
 <h1>Projects</h1>
 
@@ -24,6 +28,7 @@
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C">Description</th>
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C"></th>
     <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C" ></th>
+    <th width="200" nowrap="nowrap" align = "center" bgcolor="#F0E68C" ></th>
     <c:forEach items="${allProjects}" var="project">
         <tr>
             <td>${project.id}</td>
@@ -31,6 +36,7 @@
             <td>${project.description}</td>
             <td align="center"><a href="project-edit?id=${project.id}">EDIT</a></td>
             <td align="center"><a href="project-remove?id=${project.id}">REMOVE</a></td>
+            <td align="center"><a href="tasks-for-project?id=${project.id}">TASKS</a></td>
         </tr>
     </c:forEach>
 </table>

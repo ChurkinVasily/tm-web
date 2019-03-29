@@ -1,9 +1,7 @@
 package ru.churkin.controller.project;
 
 import ru.churkin.entity.Project;
-import ru.churkin.entity.Task;
 import ru.churkin.repository.ProjectRepository;
-import ru.churkin.repository.TaskRepository;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

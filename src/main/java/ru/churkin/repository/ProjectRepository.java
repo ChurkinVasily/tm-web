@@ -11,14 +11,17 @@ public class ProjectRepository implements IProjectRepository {
     private static List<Project> projectList = new ArrayList<>();
 
     static {
-      Project Project1 = new Project("Project1");
-      Project Project2 = new Project("Project2");
-      Project Project3 = new Project("Project3");
-      
-      projectList.add(Project1);
-      projectList.add(Project2);
-      projectList.add(Project3);
-      
+        Project project1 = new Project("Project1");
+        project1.setId("111");
+        Project project2 = new Project("Project2");
+        project2.setId("222");
+        Project project3 = new Project("Project3");
+        project3.setId("333");
+
+        projectList.add(project1);
+        projectList.add(project2);
+        projectList.add(project3);
+
     }
 
     @Override
@@ -48,7 +51,7 @@ public class ProjectRepository implements IProjectRepository {
     public void updateProject(Project project) {
         String id = project.getId();
         for (Project proj : projectList) {
-            if (proj.getId().equals(id)){
+            if (proj.getId().equals(id)) {
                 projectList.remove(proj);
                 projectList.add(project);
                 return;
@@ -65,5 +68,18 @@ public class ProjectRepository implements IProjectRepository {
                 return;
             }
         }
+    }
+
+    @Override
+    public Project findProjectByName(String name) {
+        if (name.isEmpty()) return null;
+        Project project = null;
+        for (Project iproject : projectList) {
+            if (name.equals(iproject.getName())) {
+                project = iproject;
+                break;
+            }
+        }
+        return project;
     }
 }

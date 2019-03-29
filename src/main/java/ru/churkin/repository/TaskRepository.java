@@ -15,12 +15,18 @@ public class TaskRepository implements ITaskRepository {
 
     static {
         Task task1 = new Task("task1");
-        Task task2 = new Task("task2");
-        Task task3 = new Task("task3");
+        task1.setProjectId("111");
+        Task task2 = new Task("task2(p3)");
+        task2.setProjectId("333");
+        Task task3 = new Task("task3(p2)");
+        task3.setProjectId("222");
+        Task task4 = new Task("task4(p2)");
+        task4.setProjectId("222");
 
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
+        taskList.add(task4);
     }
 
     @Override
@@ -45,6 +51,20 @@ public class TaskRepository implements ITaskRepository {
     @Override
     public List<Task> getTaskAll() {
         return taskList;
+    }
+
+    @Override
+    public List<Task> getByProjectId(final @Nullable String projectId) {
+        if (projectId == null || projectId.isEmpty()) return null;
+        List<Task> list = new ArrayList<>();
+        for (Task itask : taskList) {
+            System.out.println(itask);
+            if (itask.getProjectId().equals(projectId)) {
+                System.out.println("task id : " + itask.getId());
+                list.add(itask);
+            }
+        }
+        return list;
     }
 
     @Override

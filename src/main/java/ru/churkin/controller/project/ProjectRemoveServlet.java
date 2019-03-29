@@ -21,7 +21,6 @@ public class ProjectRemoveServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         final String projectId = req.getParameter("id");
         projectRepository.deleteProjectById(projectId);
         resp.sendRedirect("projects");

@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<div> <a href="main">MAIN</a></div>
+<div> <a href="projects">PROJECTS</a></div>
+<div> <a href="tasks">TASKS</a></div>
+
 <div align="center">
 <h1>Tasks</h1>
 
@@ -29,6 +33,7 @@
             <td>${task.id}</td>
             <td>${task.name}</td>
             <td>${task.description}</td>
+
             <td align="center"><a href="task-edit?id=${task.id}">EDIT</a></td>
             <td align="center"><a href="task-remove?id=${task.id}">REMOVE</a></td>
         </tr>
