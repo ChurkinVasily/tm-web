@@ -36,7 +36,7 @@ public class ProjectRepository implements IProjectRepository {
 
     @Override
     public Project findProjectById(String id) {
-        if (id.isEmpty()) return null;
+        if (id == null || id.isEmpty()) return null;
         Project project = null;
         for (Project iproject : projectList) {
             if (id.equals(iproject.getId())) {
@@ -51,7 +51,7 @@ public class ProjectRepository implements IProjectRepository {
     public void updateProject(Project project) {
         String id = project.getId();
         for (Project proj : projectList) {
-            if (proj.getId().equals(id)) {
+            if (id.equals(proj.getId())) {
                 projectList.remove(proj);
                 projectList.add(project);
                 return;

@@ -3,7 +3,6 @@ package ru.churkin.repository;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.churkin.api.ITaskRepository;
-import ru.churkin.entity.Project;
 import ru.churkin.entity.Task;
 
 import java.util.ArrayList;
@@ -16,12 +15,16 @@ public class TaskRepository implements ITaskRepository {
     static {
         Task task1 = new Task("task1");
         task1.setProjectId("111");
+        task1.setUserId("u1");
         Task task2 = new Task("task2(p3)");
         task2.setProjectId("333");
+        task2.setUserId("u2");
         Task task3 = new Task("task3(p2)");
         task3.setProjectId("222");
+        task3.setUserId("u2");
         Task task4 = new Task("task4(p2)");
         task4.setProjectId("222");
+        task4.setUserId("u1");
 
         taskList.add(task1);
         taskList.add(task2);
@@ -30,9 +33,10 @@ public class TaskRepository implements ITaskRepository {
     }
 
     @Override
-    public void createTask(String name) {  ///------ переделать. сделать проверку на ноль в сервлете EDIT task
+    public void createTask(final String name, final @Nullable String userId) {
+        if (userId == null || userId.isEmpty()) return;
         Task task = new Task(name);
-        task.setProjectId("111");
+        task.setUserId(userId);
         taskList.add(task);
     }
 
@@ -56,11 +60,24 @@ public class TaskRepository implements ITaskRepository {
     }
 
     @Override
-    public List<Task> getByProjectId(final @Nullable String projectId) {
+    public List<Task> getByProjectId(final @Nullable String projectId, final @Nullable String userId) {
         if (projectId == null || projectId.isEmpty()) return null;
+        if (userId == null || userId.isEmpty()) return null;
         List<Task> list = new ArrayList<>();
         for (Task itask : taskList) {
-            if (itask.getProjectId().equals(projectId)) {
+            if (projectId.equals(itask.getProjectId()) && userId.equals(itask.getUserId())) {
+                list.add(itask);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Task> getByUserId(final @Nullable String userId) {
+        if (userId == null || userId.isEmpty()) return null;
+        List<Task> list = new ArrayList<>();
+        for (Task itask : taskList) {
+            if (userId.equals(itask.getUserId())) {
                 list.add(itask);
             }
         }
@@ -71,7 +88,7 @@ public class TaskRepository implements ITaskRepository {
     public void updateTask(Task task) {
         String id = task.getId();
         for (Task tsk : taskList) {
-            if (tsk.getId().equals(id)){
+            if (tsk.getId().equals(id)) {
                 taskList.remove(tsk);
                 taskList.add(tsk);
                 return;

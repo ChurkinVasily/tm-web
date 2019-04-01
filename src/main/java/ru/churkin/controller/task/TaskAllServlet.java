@@ -10,14 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/tasks")
 public class TaskAllServlet extends HttpServlet {
-
-    Logger logger = Logger.getLogger(this.getClass().getName());
 
     private ITaskRepository taskRepository;
 
@@ -29,10 +27,19 @@ public class TaskAllServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Task> taskAll = taskRepository.getTaskAll();
+        HttpSession session = req.getSession();
+        final String userId = (String) session.getAttribute("userId");
+        final String userName = (String) session.getAttribute("userName");
+
+
+        if (userId == null || userId.isEmpty()) {
+            resp.sendRedirect("login");
+            return;
+        }
+        List<Task> taskAll = taskRepository.getByUserId(userId);
         req.setAttribute("allTasks", taskAll);
+        req.setAttribute("currentUserName", userName);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-list.jsp");
         requestDispatcher.forward(req, resp);
-
     }
 }

@@ -15,7 +15,7 @@ public class Task {
     private String name;
     private String description;
     private String projectId;
-//    private String userId;
+    private String userId;
 
     public Task(String name) {
         this.id = UUID.randomUUID().toString();

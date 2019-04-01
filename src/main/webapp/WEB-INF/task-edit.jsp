@@ -34,6 +34,10 @@
                      </select>
                  </p>
 
+    <%-- <p><b>User</b><br> --%>
+         <%--   <input type="text" name="taskUserId" size="40" value = "${task.userId}">--%>
+     <%--   </p>--%>
+
    <p>
    <input type="submit" value="Save changes">
    </p>

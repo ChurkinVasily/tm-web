@@ -13,7 +13,9 @@ public class UserRepository implements IUserRepository {
 
     static {
         User user1 = new User("user1", "pass1");
+        user1.setId("u1");
         User user2 = new User("user2", "pass2");
+        user2.setId("u2");
 
         userList.add(user1);
         userList.add(user2);
@@ -64,5 +66,14 @@ public class UserRepository implements IUserRepository {
     @Override
     public List<User> getUserList() {
         return userList;
+    }
+
+    @Override
+    public boolean validate(final @Nullable String userName, final @Nullable String userPass) {
+        if (userName == null || userName.isEmpty() || userPass == null || userPass.isEmpty()) return false;
+        User userInBase = this.findUserByName(userName);
+        if (userInBase == null) return false;
+        if (userInBase.getPassword().equals(userPass)) return true;
+        return false;
     }
 }

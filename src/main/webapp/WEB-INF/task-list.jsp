@@ -7,9 +7,16 @@
 </head>
 <body>
 
+<div align = "right" style="margin-right: 300px; margin-top: 30px">
+ <p style = "color: red; font-weight: bold"> Current user:  ${currentUserName}</p>
+ </div>
+
+<div align = "left" style="margin-top: -30px">
  <a href="main">MAIN</a> ||
  <a href="projects">PROJECTS</a> ||
- <a href="tasks">TASKS</a>
+ <a href="tasks">TASKS</a> ||
+ <a href="logout">LOGOUT</a>
+</div>
 
 <div align="center">
 <h1>Tasks</h1>
