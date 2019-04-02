@@ -39,7 +39,7 @@ public class TaskEditServlet extends HttpServlet {
         List<Project> allProjects = projectRepository.getProjectAll();
         req.setAttribute("allProjects", allProjects);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-edit.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/task-edit.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

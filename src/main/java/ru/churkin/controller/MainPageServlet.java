@@ -41,7 +41,7 @@ public class MainPageServlet extends HttpServlet {
         req.setAttribute("currentUserName", userName);
         req.setAttribute("session", session);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/main.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views//main.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

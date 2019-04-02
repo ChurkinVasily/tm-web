@@ -39,7 +39,7 @@ public class TaskAllServlet extends HttpServlet {
         List<Task> taskAll = taskRepository.getByUserId(userId);
         req.setAttribute("allTasks", taskAll);
         req.setAttribute("currentUserName", userName);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/task-list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/task-list.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

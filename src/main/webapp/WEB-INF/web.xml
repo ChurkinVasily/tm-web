@@ -8,11 +8,11 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error.html</location>
+        <location>/WEB-INF/views/error.html</location>
     </error-page>
     <error-page>
         <error-code>403</error-code>
-        <location>/WEB-INF/error.html</location>
+        <location>/WEB-INF/views/error.html</location>
     </error-page>
 
     <welcome-file-list>

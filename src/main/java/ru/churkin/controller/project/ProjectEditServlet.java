@@ -27,7 +27,7 @@ public class ProjectEditServlet extends HttpServlet {
         Project project = projectRepository.findProjectById(projectId);
 
         req.setAttribute("project", project);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/project-edit.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/project-edit.jsp");
         requestDispatcher.forward(req, resp);
     }
 

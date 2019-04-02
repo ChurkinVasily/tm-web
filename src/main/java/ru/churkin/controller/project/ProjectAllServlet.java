@@ -42,7 +42,7 @@ public class ProjectAllServlet extends HttpServlet {
         List<Project> projectsAll = projectRepository.getProjectAll();
         req.setAttribute("allProjects", projectsAll);
         req.setAttribute("currentUserName", userName);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/project-list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/project-list.jsp");
         requestDispatcher.forward(req, resp);
     }
 
