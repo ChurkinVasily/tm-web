@@ -23,7 +23,7 @@ public class TaskController {
     @Autowired
     IProjectRepository projectRepository;
 
-    @RequestMapping(value = "/tasks1", method = RequestMethod.GET)
+    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String allTasks(HttpServletRequest req, Model model) {
 
         HttpSession session = req.getSession();
@@ -39,17 +39,17 @@ public class TaskController {
         return "task-list";
     }
 
-    @RequestMapping(value = "/create-task1", method = RequestMethod.GET)
+    @RequestMapping(value = "/create-task", method = RequestMethod.GET)
     public String createTask(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userId = (String) session.getAttribute("userId");
 
         String name = req.getParameter("taskName");
         taskRepository.createTask(name, userId);
-        return "redirect:" + "tasks1";
+        return "redirect:" + "tasks";
     }
 
-    @RequestMapping(value = "/task-edit1", method = RequestMethod.GET)
+    @RequestMapping(value = "/task-edit", method = RequestMethod.GET)
     public String editTask(HttpServletRequest req, Model model) {
         String taskId = req.getParameter("id");
         Task task = taskRepository.findTaskById(taskId);
@@ -64,7 +64,7 @@ public class TaskController {
         return "task-edit";
     }
 
-    @RequestMapping(value = "/tasks-for-project1", method = RequestMethod.GET)
+    @RequestMapping(value = "/tasks-for-project", method = RequestMethod.GET)
     public String getTaskbyProject(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userId = (String) session.getAttribute("userId");
@@ -75,14 +75,14 @@ public class TaskController {
         return "task-list";
     }
 
-    @RequestMapping(value = "/task-remove1", method = RequestMethod.GET)
+    @RequestMapping(value = "/task-remove", method = RequestMethod.GET)
     public String removeTask(HttpServletRequest req, Model model) {
         final String taskId = req.getParameter("id");
         taskRepository.deleteTaskById(taskId);
-        return "redirect:" + "tasks1";
+        return "redirect:" + "tasks";
     }
 
-    @RequestMapping(value = "/task-save1", method = RequestMethod.POST)
+    @RequestMapping(value = "/task-save", method = RequestMethod.POST)
     public String saveTask(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userId = (String) session.getAttribute("userId");
@@ -99,6 +99,6 @@ public class TaskController {
         task.setUserId(userId);
 
         taskRepository.updateTask(task);
-        return "redirect:" + "tasks1";
+        return "redirect:" + "tasks-for-project?id=" +projectId;
     }
 }

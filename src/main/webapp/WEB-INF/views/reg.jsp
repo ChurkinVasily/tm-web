@@ -18,7 +18,7 @@
     <h1 align = "center" style="color: red; font-weight: bold">!!!${infoString}</h1>
  <%--</c:if>--%>
 
-<form name="login-user" method="post" action="/create-user1">
+<form name="login-user" method="post" action="/create-user">
 
 
    <p><b>Name</b><br>

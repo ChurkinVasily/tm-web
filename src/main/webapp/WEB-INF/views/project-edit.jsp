@@ -11,7 +11,7 @@
 
 <h1>Project edit</h1>
 
-<form name="save-p" method="post" action="/project-save1">
+<form name="save-p" method="post" action="/project-save">
 
     <p>
     <input type="hidden" name="projectId" size="40" value = "${project.id}">

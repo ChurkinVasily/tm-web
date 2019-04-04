@@ -18,7 +18,7 @@ public class UserController {
     IUserRepository userRepository;
 
 
-    @GetMapping(value = "/main1")
+    @GetMapping(value = "/main")
     public String mainPage(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userName = null;
@@ -36,17 +36,17 @@ public class UserController {
         return "main";
     }
 
-    @GetMapping(value = "/login1")
+    @GetMapping(value = "/login")
     public String loginUser(HttpServletRequest req, Model model) {
         return "login";
     }
 
-    @GetMapping(value = "/reg1")
+    @GetMapping(value = "/reg")
     public String regUser(HttpServletRequest req, Model model) {
         return "reg";
     }
 
-    @PostMapping(value = "/accept1")
+    @PostMapping(value = "/accept")
     public String acceptUser(HttpServletRequest req, Model model) {
         String userName = req.getParameter("userName");
         String userPassword = req.getParameter("userPass");
@@ -57,13 +57,13 @@ public class UserController {
             String userId = user.getId();
             session.setAttribute("userId", userId);
             session.setAttribute("userName", userName);
-            return "redirect:" + "tasks1";
+            return "redirect:" + "tasks";
         } else {
-            return "redirect:" + "login1";
+            return "redirect:" + "login";
         }
     }
 
-    @PostMapping(value = "/create-user1")
+    @PostMapping(value = "/create-user")
     public String createUser(HttpServletRequest req, Model model) {
 
         String userName = req.getParameter("userName");
@@ -85,13 +85,13 @@ public class UserController {
             userRepository.createUser(user);
             return "redirect:" + "login";
         }
-        return "redirect:" + "reg1";
+        return "redirect:" + "reg";
     }
 
-    @GetMapping(value = "/logout1")
+    @GetMapping(value = "/logout")
     public String logoutUser(HttpServletRequest req) {
         req.getSession().invalidate();
-        return "redirect:" + "main1";
+        return "redirect:" + "main";
     }
 
 

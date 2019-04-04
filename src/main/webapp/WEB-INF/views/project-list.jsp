@@ -21,7 +21,7 @@
 <div align="center">
 <h1>Projects</h1>
 
-<form name="create-project" method="get" action="/create-project1">
+<form name="create-project" method="get" action="/create-project">
    <p><b>New Project name</b><br>
     <input type="text" name="projectName" size="40">
    </p>
@@ -41,9 +41,9 @@
             <td>${project.id}</td>
             <td>${project.name}</td>
             <td>${project.description}</td>
-            <td align="center"><a href="project-edit1?id=${project.id}">EDIT</a></td>
-            <td align="center"><a href="project-remove1?id=${project.id}">REMOVE</a></td>
-            <td align="center"><a href="tasks-for-project1?id=${project.id}">TASKS</a></td>
+            <td align="center"><a href="project-edit?id=${project.id}">EDIT</a></td>
+            <td align="center"><a href="project-remove?id=${project.id}">REMOVE</a></td>
+            <td align="center"><a href="tasks-for-project?id=${project.id}">TASKS</a></td>
         </tr>
     </c:forEach>
 </table>

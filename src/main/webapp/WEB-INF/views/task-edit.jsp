@@ -11,7 +11,7 @@
 
 <h1>Task edit</h1>
 
-<form name="save-t" method="post" action="/task-save1">
+<form name="save-t" method="post" action="/task-save">
 
     <p>
         <input type="hidden" name="taskId" size="40" value = "${task.id}">
@@ -31,12 +31,8 @@
                     <c:forEach items="${allProjects}" var="project">
                          <option >${project.name}</option>
                     </c:forEach>
-                     </select>
-                 </p>
-
-    <%-- <p><b>User</b><br> --%>
-         <%--   <input type="text" name="taskUserId" size="40" value = "${task.userId}">--%>
-     <%--   </p>--%>
+           </select>
+      </p>
 
    <p>
    <input type="submit" value="Save changes">

@@ -19,7 +19,7 @@ public class Project {
     private String timeFinish;
 
     public Project(String name) {
-//        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.name = name;
     }
 }

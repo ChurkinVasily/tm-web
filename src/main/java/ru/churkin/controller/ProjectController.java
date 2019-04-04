@@ -18,7 +18,7 @@ public class ProjectController {
     @Autowired
     IProjectRepository projectRepository;
 
-    @RequestMapping(value = "/projects1", method = RequestMethod.GET)
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
     public String allProjects(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         final String userId = (String) session.getAttribute("userId");
@@ -34,16 +34,16 @@ public class ProjectController {
         return "project-list";
     }
 
-    @RequestMapping(value = "/create-project1", method = RequestMethod.GET)
+    @RequestMapping(value = "/create-project", method = RequestMethod.GET)
     public String crateProject(HttpServletRequest req, Model model) {
 
         String name = req.getParameter("projectName");
         projectRepository.createProject(name);
-        return "redirect:" + "projects1";
+        return "redirect:" + "projects";
     }
 
 
-    @RequestMapping(value = "/project-edit1", method = RequestMethod.GET)
+    @RequestMapping(value = "/project-edit", method = RequestMethod.GET)
     public String editProject(HttpServletRequest req, Model model) {
 
         String projectId = req.getParameter("id");
@@ -53,14 +53,14 @@ public class ProjectController {
         return "project-edit";
     }
 
-    @RequestMapping(value = "/project-remove1", method = RequestMethod.GET)
+    @RequestMapping(value = "/project-remove", method = RequestMethod.GET)
     public String removeProject(HttpServletRequest req, Model model) {
         final String projectId = req.getParameter("id");
         projectRepository.deleteProjectById(projectId);
-        return "redirect:" + "projects1";
+        return "redirect:" + "projects";
     }
 
-    @RequestMapping(value = "/project-save1", method = RequestMethod.POST)
+    @RequestMapping(value = "/project-save", method = RequestMethod.POST)
     public String saveProject(HttpServletRequest req, Model model) {
         String id = req.getParameter("projectId");
         Project project = projectRepository.findProjectById(id);
@@ -72,7 +72,7 @@ public class ProjectController {
 
         projectRepository.updateProject(project);
 
-        return "redirect:" + "projects1";
+        return "redirect:" + "projects";
     }
 
 }
