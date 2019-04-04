@@ -14,7 +14,11 @@
 
 <p align="center" style="font-size: 30px; font-weight: bold"> REGISTRATION PAGE </p>
 
-<form name="login-user" method="post" action="/create-user">
+ <%--<c:if test="${!infoString.isEmpty() || (!infoString == null)}"> --%>
+    <h1 align = "center" style="color: red; font-weight: bold">!!!${infoString}</h1>
+ <%--</c:if>--%>
+
+<form name="login-user" method="post" action="/create-user1">
 
 
    <p><b>Name</b><br>

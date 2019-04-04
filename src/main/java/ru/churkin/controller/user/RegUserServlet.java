@@ -1,4 +1,4 @@
-package ru.churkin.controller;
+package ru.churkin.controller.user;
 
 import ru.churkin.repository.UserRepository;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/reg")
+public class RegUserServlet extends HttpServlet {
 
     private UserRepository userRepository;
 
@@ -21,14 +21,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/login.jsp");
-        requestDispatcher.forward(req, resp);
-
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/reg.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

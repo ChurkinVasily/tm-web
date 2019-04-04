@@ -1,11 +1,13 @@
 package ru.churkin.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.churkin.api.IProjectRepository;
 import ru.churkin.entity.Project;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProjectRepository implements IProjectRepository {
 
     private static List<Project> projectList = new ArrayList<>();

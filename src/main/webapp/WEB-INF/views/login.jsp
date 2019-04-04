@@ -14,7 +14,7 @@
 
 <p align="center" style="font-size: 30px; font-weight: bold"> Login page </p>
 
-<form name="login-user" method="post" action="/accept" align= "center">
+<form name="login-user" method="post" action="/accept1" align= "center">
 
 
    <p><b>Name</b><br>

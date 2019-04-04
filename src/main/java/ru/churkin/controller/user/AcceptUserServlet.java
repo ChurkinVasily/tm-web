@@ -1,4 +1,4 @@
-package ru.churkin.controller;
+package ru.churkin.controller.user;
 
 import ru.churkin.entity.User;
 import ru.churkin.repository.UserRepository;
@@ -38,10 +38,5 @@ public class AcceptUserServlet extends HttpServlet {
         } else {
             resp.sendRedirect("login");
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
     }
 }

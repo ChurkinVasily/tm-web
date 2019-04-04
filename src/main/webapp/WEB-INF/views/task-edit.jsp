@@ -11,7 +11,7 @@
 
 <h1>Task edit</h1>
 
-<form name="save-t" method="post" action="/task-save">
+<form name="save-t" method="post" action="/task-save1">
 
     <p>
         <input type="hidden" name="taskId" size="40" value = "${task.id}">

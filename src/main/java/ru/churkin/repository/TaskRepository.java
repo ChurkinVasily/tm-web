@@ -2,12 +2,15 @@ package ru.churkin.repository;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.churkin.api.ITaskRepository;
 import ru.churkin.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TaskRepository implements ITaskRepository {
 
     private static List<Task> taskList = new ArrayList<>();

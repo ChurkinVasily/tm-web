@@ -1,12 +1,14 @@
 package ru.churkin.repository;
 
 import org.jetbrains.annotations.Nullable;
+import org.springframework.stereotype.Repository;
 import ru.churkin.api.IUserRepository;
 import ru.churkin.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class UserRepository implements IUserRepository {
 
     private static List<User> userList = new ArrayList<>();

@@ -1,4 +1,4 @@
-package ru.churkin.controller;
+package ru.churkin.controller.user;
 
 import ru.churkin.entity.User;
 import ru.churkin.repository.UserRepository;
@@ -21,7 +21,7 @@ public class CreateUserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
         String userPass = req.getParameter("userPass");
         boolean isNewUser = !(userName == null) && !userName.isEmpty() && (userRepository.findUserByName(userName) == null);
@@ -31,10 +31,5 @@ public class CreateUserServlet extends HttpServlet {
             userRepository.createUser(user);
         }
         resp.sendRedirect("login");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
     }
 }

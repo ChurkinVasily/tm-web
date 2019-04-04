@@ -9,7 +9,7 @@
 
 <div align = "right" style="margin-right: 300px">
  <p style = "color: red; font-weight: bold"> Current user:  ${currentUserName}</p>
-     <a href="logout">LOGOUT</a>
+     <a href="logout1">LOGOUT</a>
  </div>
 
 <p align="center" style="font-size: 30px; font-weight: bold"> MAIN PAGE </p>
@@ -23,8 +23,8 @@
 <c:if test="${session == null || currentUserName == null}">
    <div align = "center">
    <p style="color: red; font-size: 20px"> Войдите или зарегистрируйтесь</p>
-     <a style="color: blue; font-size: 20px" href="login">LOGIN</a> ||
-     <a style="color: blue; font-size: 20px" href="reg">REGISTRATION</a>
+     <a style="color: blue; font-size: 20px" href="login1">LOGIN</a> ||
+     <a style="color: blue; font-size: 20px" href="reg1">REGISTRATION</a>
    </div>
 </c:if>
 

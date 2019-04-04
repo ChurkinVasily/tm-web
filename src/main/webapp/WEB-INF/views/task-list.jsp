@@ -21,7 +21,7 @@
 <div align="center">
 <h1>Tasks</h1>
 
-<form name="create-task" method="get" action="/create-task">
+<form name="create-task" method="get" action="/create-task1">
    <p><b>New Task name</b><br>
     <input type="text" name="taskName" size="40">
    </p>
@@ -41,8 +41,8 @@
             <td>${task.name}</td>
             <td>${task.description}</td>
 
-            <td align="center"><a href="task-edit?id=${task.id}">EDIT</a></td>
-            <td align="center"><a href="task-remove?id=${task.id}">REMOVE</a></td>
+            <td align="center"><a href="task-edit1?id=${task.id}">EDIT</a></td>
+            <td align="center"><a href="task-remove1?id=${task.id}">REMOVE</a></td>
         </tr>
     </c:forEach>
 </table>
