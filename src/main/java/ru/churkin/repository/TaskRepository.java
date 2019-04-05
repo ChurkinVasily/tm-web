@@ -3,19 +3,20 @@ package ru.churkin.repository;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ru.churkin.api.ITaskRepository;
 import ru.churkin.entity.Task;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class TaskRepository implements ITaskRepository {
 
-    private static List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<>();
 
-    static {
+    @PostConstruct
+    public void init() {
         Task task1 = new Task("task1");
         task1.setProjectId("111");
         task1.setUserId("u1");
@@ -28,11 +29,15 @@ public class TaskRepository implements ITaskRepository {
         Task task4 = new Task("task4(p2)");
         task4.setProjectId("222");
         task4.setUserId("u1");
+        Task task5 = new Task("task5(p3)");
+        task5.setProjectId("333");
+        task5.setUserId("u1");
 
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
         taskList.add(task4);
+        taskList.add(task5);
     }
 
     @Override

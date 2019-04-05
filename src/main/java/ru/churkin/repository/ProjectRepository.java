@@ -4,26 +4,28 @@ import org.springframework.stereotype.Repository;
 import ru.churkin.api.IProjectRepository;
 import ru.churkin.entity.Project;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ProjectRepository implements IProjectRepository {
 
-    private static List<Project> projectList = new ArrayList<>();
+    private List<Project> projectList = new ArrayList<>();
 
-    static {
+    @PostConstruct
+    public void init() {
         Project project1 = new Project("Project1");
         project1.setId("111");
         Project project2 = new Project("Project2");
         project2.setId("222");
         Project project3 = new Project("Project3");
         project3.setId("333");
-
+        Project project4 = new Project("Project4");
         projectList.add(project1);
         projectList.add(project2);
         projectList.add(project3);
-
+        projectList.add(project4);
     }
 
     @Override

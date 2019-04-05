@@ -5,22 +5,27 @@ import org.springframework.stereotype.Repository;
 import ru.churkin.api.IUserRepository;
 import ru.churkin.entity.User;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class UserRepository implements IUserRepository {
 
-    private static List<User> userList = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
 
-    static {
+    @PostConstruct
+    public void init() {
         User user1 = new User("user1", "pass1");
         user1.setId("u1");
         User user2 = new User("user2", "pass2");
         user2.setId("u2");
+        User user3 = new User("user3", "pass3");
+        user3.setId("u3");
 
         userList.add(user1);
         userList.add(user2);
+        userList.add(user3);
     }
 
     @Override
