@@ -6,16 +6,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.churkin.api.IUserRepository;
+import ru.churkin.api.IUserService;
 import ru.churkin.entity.User;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.logging.Logger;
 
 @Controller
 public class UserController {
 
+    Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Autowired
     IUserRepository userRepository;
+
+    @Autowired
+    IUserService userService;
 
 
     @GetMapping(value = "/main")
@@ -24,7 +32,7 @@ public class UserController {
         String userName = null;
         if (!(session == null)) {
             String userId = (String) session.getAttribute("userId");
-            User user = userRepository.findUserById(userId);
+            User user = userService.findUserById(userId);
             if (user == null) {
                 userName = null;
             } else {
@@ -48,11 +56,14 @@ public class UserController {
 
     @PostMapping(value = "/accept")
     public String acceptUser(HttpServletRequest req, Model model) {
+        logger.info("--------accept user strt");
         String userName = req.getParameter("userName");
+        logger.info("--------accept user : user name : " + userName);
         String userPassword = req.getParameter("userPass");
+        logger.info("--------accept user : user pass : " + userPassword);
 
-        if (userRepository.validate(userName, userPassword)) {
-            User user = userRepository.findUserByName(userName);
+        if (userService.validate(userName, userPassword)) {
+            User user = userService.findUserByName(userName);
             HttpSession session = req.getSession();
             String userId = user.getId();
             session.setAttribute("userId", userId);
@@ -72,7 +83,7 @@ public class UserController {
         if (userName == null || userName.isEmpty()) {
             isNewUser = false;
         }
-        if (!(userRepository.findUserByName(userName) == null)) {
+        if (!(userService.findUserByName(userName) == null)) {
             isNewUser = false;
         }
 
@@ -82,7 +93,8 @@ public class UserController {
         }
         if (isNewUser && isCorrectPass) {
             User user = new User(userName, userPass);
-            userRepository.createUser(user);
+//            userRepository.createUser(user);
+            userService.createNewUser(userName, userPass);
             return "redirect:" + "login";
         }
         return "redirect:" + "reg";

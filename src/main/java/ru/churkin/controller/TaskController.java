@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.churkin.api.IProjectRepository;
 import ru.churkin.api.ITaskRepository;
+import ru.churkin.api.IUserRepository;
 import ru.churkin.entity.Project;
 import ru.churkin.entity.Task;
+import ru.churkin.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,6 +25,9 @@ public class TaskController {
     @Autowired
     IProjectRepository projectRepository;
 
+    @Autowired
+    IUserRepository userRepository;
+
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String allTasks(HttpServletRequest req, Model model) {
 
@@ -33,7 +38,8 @@ public class TaskController {
         if (userId == null || userId.isEmpty()) {
             return "redirect:" + "login";
         }
-        List<Task> taskAll = taskRepository.getByUserId(userId);
+//        List<Task> taskAll = taskRepository.getByUserId(userId);
+        List<Task> taskAll = taskRepository.getTaskAll();
         model.addAttribute("allTasks", taskAll);
         model.addAttribute("currentUserName", userName);
         return "task-list";
@@ -55,7 +61,7 @@ public class TaskController {
         Task task = taskRepository.findTaskById(taskId);
         model.addAttribute("task", task);
 
-        Project currentProject = projectRepository.findProjectById(task.getProjectId());
+        Project currentProject = projectRepository.findProjectById(task.getProject().getId());
         model.addAttribute("currentProject", currentProject);
 
         List<Project> allProjects = projectRepository.getProjectAll();
@@ -70,7 +76,8 @@ public class TaskController {
         String userId = (String) session.getAttribute("userId");
 
         String projectId = req.getParameter("id");
-        List<Task> tasksByProjectId = taskRepository.getByProjectId(projectId, userId);
+//        List<Task> tasksByProjectId = taskRepository.getByProjectId(projectId, userId);
+        List<Task> tasksByProjectId = taskRepository.getTaskAll();
         model.addAttribute("allTasks", tasksByProjectId);
         return "task-list";
     }
@@ -78,7 +85,9 @@ public class TaskController {
     @RequestMapping(value = "/task-remove", method = RequestMethod.GET)
     public String removeTask(HttpServletRequest req, Model model) {
         final String taskId = req.getParameter("id");
-        taskRepository.deleteTaskById(taskId);
+//        taskRepository.deleteTaskById(taskId);
+        Task task = taskRepository.findTaskById(taskId); /// ----- новая строка
+        taskRepository.deleteTask(task);
         return "redirect:" + "tasks";
     }
 
@@ -86,6 +95,7 @@ public class TaskController {
     public String saveTask(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userId = (String) session.getAttribute("userId");
+        User user = userRepository.findUserById(userId);
 
         String id = req.getParameter("taskId");
         Task task = taskRepository.findTaskById(id);
@@ -95,8 +105,11 @@ public class TaskController {
         Project project = projectRepository.findProjectByName(projectName);
         String projectId = project.getId();
 
-        task.setProjectId(projectId);
-        task.setUserId(userId);
+//        task.setProjectId(projectId);
+//        task.setUserId(userId);
+
+        task.setProject(project);
+        task.setUser(user);
 
         taskRepository.updateTask(task);
         return "redirect:" + "tasks-for-project?id=" +projectId;

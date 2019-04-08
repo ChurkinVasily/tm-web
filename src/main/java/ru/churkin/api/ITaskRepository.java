@@ -8,20 +8,17 @@ public interface ITaskRepository {
 
     void createTask(String name, String userId);
 
-    Task findTaskById(String name);
+    Task findTaskById(String id);
 
     List<Task> getTaskAll();
 
-    List<Task> getByProjectId(String projectId, String userId);
-
-    List<Task> getByUserId(String userId);
+//    List<Task> getByProjectId(String projectId, String userId);
+//
+//    List<Task> getByUserId(String userId);
 
     void updateTask(Task task);
 
-    void deleteTaskByName(String name);
+//    void deleteTaskById(String id);
 
-    void deleteTaskById(String id);
-
-//    void deleteTaskByNameForUser(String name, String userId);
-
+    void deleteTask(Task task);
 }
