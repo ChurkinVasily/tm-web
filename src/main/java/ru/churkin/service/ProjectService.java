@@ -52,7 +52,16 @@ public class ProjectService implements IProjectService {
     @Override
     public Project findProjectById(@Nullable String id) {
         if (id.isEmpty() || id == null) return null;
-        return projectRepository.findProjectById(id);
+        Project project = projectRepository.findProjectById(id);
+        if (project == null) return null;
+        return project;
+    }
+
+
+    @Override
+    public Project findProjectByName(@Nullable String projectName) {
+        if (projectName == null) return null;
+        return projectRepository.findProjectByName(projectName);
     }
 
     @Override

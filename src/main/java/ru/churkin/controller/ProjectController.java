@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.churkin.api.IProjectRepository;
 import ru.churkin.api.IProjectService;
 import ru.churkin.entity.Project;
 
@@ -42,7 +41,6 @@ public class ProjectController {
         return "redirect:" + "projects";
     }
 
-
     @RequestMapping(value = "/project-edit", method = RequestMethod.GET)
     public String editProject(HttpServletRequest req, Model model) {
 
@@ -74,5 +72,4 @@ public class ProjectController {
 
         return "redirect:" + "projects";
     }
-
 }

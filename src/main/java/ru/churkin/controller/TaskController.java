@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.churkin.api.IProjectRepository;
-import ru.churkin.api.ITaskRepository;
-import ru.churkin.api.IUserRepository;
+import ru.churkin.api.*;
 import ru.churkin.entity.Project;
 import ru.churkin.entity.Task;
 import ru.churkin.entity.User;
@@ -20,13 +18,13 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    ITaskRepository taskRepository;
+    ITaskService taskService;
 
     @Autowired
-    IProjectRepository projectRepository;
+    IProjectService projectService;
 
     @Autowired
-    IUserRepository userRepository;
+    IUserService userService;
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public String allTasks(HttpServletRequest req, Model model) {
@@ -38,8 +36,7 @@ public class TaskController {
         if (userId == null || userId.isEmpty()) {
             return "redirect:" + "login";
         }
-//        List<Task> taskAll = taskRepository.getByUserId(userId);
-        List<Task> taskAll = taskRepository.getTaskAll();
+        List<Task> taskAll = taskService.findTaskByUserId(userId);
         model.addAttribute("allTasks", taskAll);
         model.addAttribute("currentUserName", userName);
         return "task-list";
@@ -51,20 +48,21 @@ public class TaskController {
         String userId = (String) session.getAttribute("userId");
 
         String name = req.getParameter("taskName");
-        taskRepository.createTask(name, userId);
+        User user = userService.findUserById(userId);
+        taskService.createTask(name, user);
         return "redirect:" + "tasks";
     }
 
     @RequestMapping(value = "/task-edit", method = RequestMethod.GET)
     public String editTask(HttpServletRequest req, Model model) {
         String taskId = req.getParameter("id");
-        Task task = taskRepository.findTaskById(taskId);
+        Task task = taskService.findTaskById(taskId);
         model.addAttribute("task", task);
 
-        Project currentProject = projectRepository.findProjectById(task.getProject().getId());
+        Project currentProject = task.getProject();
         model.addAttribute("currentProject", currentProject);
 
-        List<Project> allProjects = projectRepository.getProjectAll();
+        List<Project> allProjects = projectService.getProjectAll();
         model.addAttribute("allProjects", allProjects);
 
         return "task-edit";
@@ -76,8 +74,7 @@ public class TaskController {
         String userId = (String) session.getAttribute("userId");
 
         String projectId = req.getParameter("id");
-//        List<Task> tasksByProjectId = taskRepository.getByProjectId(projectId, userId);
-        List<Task> tasksByProjectId = taskRepository.getTaskAll();
+        List<Task> tasksByProjectId = taskService.getByProjectId(projectId, userId);
         model.addAttribute("allTasks", tasksByProjectId);
         return "task-list";
     }
@@ -85,9 +82,7 @@ public class TaskController {
     @RequestMapping(value = "/task-remove", method = RequestMethod.GET)
     public String removeTask(HttpServletRequest req, Model model) {
         final String taskId = req.getParameter("id");
-//        taskRepository.deleteTaskById(taskId);
-        Task task = taskRepository.findTaskById(taskId); /// ----- новая строка
-        taskRepository.deleteTask(task);
+        taskService.deleteTask(taskId);
         return "redirect:" + "tasks";
     }
 
@@ -95,23 +90,20 @@ public class TaskController {
     public String saveTask(HttpServletRequest req, Model model) {
         HttpSession session = req.getSession();
         String userId = (String) session.getAttribute("userId");
-        User user = userRepository.findUserById(userId);
+        User user = userService.findUserById(userId);
 
         String id = req.getParameter("taskId");
-        Task task = taskRepository.findTaskById(id);
+        Task task = taskService.findTaskById(id);
         task.setName(req.getParameter("taskName"));
         task.setDescription(req.getParameter("taskDescription"));
         final String projectName = req.getParameter("projectName");
-        Project project = projectRepository.findProjectByName(projectName);
+        Project project = projectService.findProjectByName(projectName);
         String projectId = project.getId();
-
-//        task.setProjectId(projectId);
-//        task.setUserId(userId);
 
         task.setProject(project);
         task.setUser(user);
 
-        taskRepository.updateTask(task);
+        taskService.updateTask(task);
         return "redirect:" + "tasks-for-project?id=" +projectId;
     }
 }

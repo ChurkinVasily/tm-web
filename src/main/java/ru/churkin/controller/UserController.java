@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.churkin.api.IUserRepository;
 import ru.churkin.api.IUserService;
 import ru.churkin.entity.User;
 
@@ -85,7 +84,6 @@ public class UserController {
         }
         if (isNewUser && isCorrectPass) {
             User user = new User(userName, userPass);
-//            userRepository.createUser(user);
             userService.createNewUser(userName, userPass);
             return "redirect:" + "login";
         }

@@ -12,13 +12,11 @@ public interface IProjectRepository {
 
     void updateProject(Project project);
 
-//    void deleteProjectById(String id);
-
     void deleteProject(Project project);
 
     Project findProjectById(String id);
 
-    Project findProjectByName(String id);
+    Project findProjectByName(String name);
 
 
 }

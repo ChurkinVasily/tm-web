@@ -26,9 +26,6 @@ public class Task {
     @Nullable
     private String timeFinish;
 
-//    private String projectId;
-//    private String userId;
-
     @ManyToOne
     @JoinColumn(name = "projectID")
     private Project project;
@@ -40,6 +37,11 @@ public class Task {
     public Task(String name) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
+    }
+
+    public Task(String id, User user) {
+        this.id = id;
+        this.user = user;
     }
 
     @Override
