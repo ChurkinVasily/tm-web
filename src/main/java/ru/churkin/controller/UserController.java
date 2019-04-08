@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.churkin.api.IUserRepository;
 import ru.churkin.api.IUserService;
 import ru.churkin.entity.User;
-import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,11 +19,7 @@ public class UserController {
     Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Autowired
-    IUserRepository userRepository;
-
-    @Autowired
     IUserService userService;
-
 
     @GetMapping(value = "/main")
     public String mainPage(HttpServletRequest req, Model model) {
@@ -56,11 +51,8 @@ public class UserController {
 
     @PostMapping(value = "/accept")
     public String acceptUser(HttpServletRequest req, Model model) {
-        logger.info("--------accept user strt");
         String userName = req.getParameter("userName");
-        logger.info("--------accept user : user name : " + userName);
         String userPassword = req.getParameter("userPass");
-        logger.info("--------accept user : user pass : " + userPassword);
 
         if (userService.validate(userName, userPassword)) {
             User user = userService.findUserByName(userName);

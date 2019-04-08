@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface IProjectRepository {
 
-    void createProject(String name);
+    void createProject(Project project);
 
     List<Project> getProjectAll();
 
-    void updateProject(Project Project);
+    void updateProject(Project project);
 
-    void deleteProjectById(String id);
+//    void deleteProjectById(String id);
+
+    void deleteProject(Project project);
 
     Project findProjectById(String id);
 

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.churkin.api.IProjectRepository;
+import ru.churkin.api.IProjectService;
 import ru.churkin.entity.Project;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ProjectController {
 
     @Autowired
-    IProjectRepository projectRepository;
+    IProjectService projectService;
 
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
     public String allProjects(HttpServletRequest req, Model model) {
@@ -28,7 +29,7 @@ public class ProjectController {
             return "redirect:" + "login";
         }
 
-        List<Project> projectsAll = projectRepository.getProjectAll();
+        List<Project> projectsAll = projectService.getProjectAll();
         model.addAttribute("allProjects", projectsAll);
         model.addAttribute("currentUserName", userName);
         return "project-list";
@@ -36,9 +37,8 @@ public class ProjectController {
 
     @RequestMapping(value = "/create-project", method = RequestMethod.GET)
     public String crateProject(HttpServletRequest req, Model model) {
-
         String name = req.getParameter("projectName");
-        projectRepository.createProject(name);
+        projectService.createProject(name);
         return "redirect:" + "projects";
     }
 
@@ -47,7 +47,7 @@ public class ProjectController {
     public String editProject(HttpServletRequest req, Model model) {
 
         String projectId = req.getParameter("id");
-        Project project = projectRepository.findProjectById(projectId);
+        Project project = projectService.findProjectById(projectId);
 
         model.addAttribute("project", project);
         return "project-edit";
@@ -56,21 +56,21 @@ public class ProjectController {
     @RequestMapping(value = "/project-remove", method = RequestMethod.GET)
     public String removeProject(HttpServletRequest req, Model model) {
         final String projectId = req.getParameter("id");
-        projectRepository.deleteProjectById(projectId);
+        projectService.deleteProject(projectId);
         return "redirect:" + "projects";
     }
 
     @RequestMapping(value = "/project-save", method = RequestMethod.POST)
     public String saveProject(HttpServletRequest req, Model model) {
         String id = req.getParameter("projectId");
-        Project project = projectRepository.findProjectById(id);
+        Project project = projectService.findProjectById(id);
 
         project.setName(req.getParameter("projectName"));
         project.setDescription(req.getParameter("projectDescription"));
         project.setTimeStart(req.getParameter("projectDateStart"));
         project.setTimeFinish(req.getParameter("projectDateFin"));
 
-        projectRepository.updateProject(project);
+        projectService.updateProject(project);
 
         return "redirect:" + "projects";
     }

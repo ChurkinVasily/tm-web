@@ -11,12 +11,13 @@ public interface IUserService {
     User findUserById(String id);
 
     User findUserByName(String userName) ;
+
+    boolean validate(String name, String pass);
 //
 //    boolean isExist(String userName);
 //
 //    boolean validateUser(User user);
 //
-    boolean validate(String name, String pass);
 
 //    User getCurrentUser();
 //
