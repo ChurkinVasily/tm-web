@@ -5,11 +5,12 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.churkin.api.IProjectRepository;
 import ru.churkin.api.IProjectService;
 import ru.churkin.entity.Project;
+import ru.churkin.repository.ProjectRepositoryJPA;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,11 +18,11 @@ import java.util.List;
 public class ProjectService implements IProjectService {
 
     @Autowired
-    IProjectRepository projectRepository;
+    ProjectRepositoryJPA projectRepository;
 
     @Override
     public List<Project> getProjectAll() {
-        List<Project> listProject = projectRepository.getProjectAll();
+        List<Project> listProject = projectRepository.findAll();
         if (listProject.isEmpty()) return null;
         return listProject;
     }
@@ -29,7 +30,7 @@ public class ProjectService implements IProjectService {
     @Override
     public boolean createProject(String projectName) {
         boolean isConsist = false;
-        for (Project cProject : projectRepository.getProjectAll()) {
+        for (Project cProject : projectRepository.findAll()) {
             if (projectName.equals(cProject.getName())) {
                 isConsist = true;
             }
@@ -38,22 +39,23 @@ public class ProjectService implements IProjectService {
             return false;
         }
         Project project = new Project(projectName);
-        projectRepository.createProject(project);
+        projectRepository.save(project);
         return true;
     }
 
     @Override
     public boolean deleteProject(String id) {
-        Project project = projectRepository.findProjectById(id);
-        projectRepository.deleteProject(project);
+        Optional<Project> projectList = projectRepository.findById(id);
+        Project project = (Project) projectList.get();
+        projectRepository.delete(project);
         return true;
     }
 
     @Override
     public Project findProjectById(@Nullable String id) {
         if (id.isEmpty() || id == null) return null;
-        Project project = projectRepository.findProjectById(id);
-        if (project == null) return null;
+        Optional<Project> projectList = projectRepository.findById(id);
+        Project project = (Project) projectList.get();
         return project;
     }
 
@@ -67,7 +69,7 @@ public class ProjectService implements IProjectService {
     @Override
     public boolean updateProject(@Nullable Project project) {
         if (project == null) return false;
-        projectRepository.updateProject(project);
+        projectRepository.save(project);
         return true;
     }
 }

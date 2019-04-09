@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.churkin.api.IUserService;
 import ru.churkin.entity.User;
-import ru.churkin.repository.UserRepository;
+import ru.churkin.repository.UserRepositoryJPA;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -14,14 +16,14 @@ import ru.churkin.repository.UserRepository;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepositoryJPA userRepository;
 
     @Override
     public boolean createNewUser(String name, String pass) {
         if (name == null || name.isEmpty() || pass == null || pass.isEmpty()) return false;
         User user = new User(name, pass);
         boolean isConsist = false;
-        for (User cUser : userRepository.getUserList()) {
+        for (User cUser : userRepository.findAll()) {
             if (!isConsist && name.equals(cUser.getName())) {
                 isConsist = true;
             }
@@ -29,7 +31,7 @@ public class UserService implements IUserService {
         if (isConsist) {
             return false;
         }
-        userRepository.createUser(user);
+        userRepository.save(user);
         return true;
     }
 
@@ -43,7 +45,8 @@ public class UserService implements IUserService {
     @Override
     public User findUserById(String id) {
         if (id == null || id.isEmpty()) return null;
-        User user = userRepository.findUserById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
+        User user = optionalUser.isPresent() ? optionalUser.get() : null;
         return user;
     }
 
