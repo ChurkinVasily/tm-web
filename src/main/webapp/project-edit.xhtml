@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="projectId" value="#{projectEdit.id}">
+    <f:viewAction action="#{projectEdit.init()}"/>
+</f:viewParam>
+</f:metadata>
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <p:outputPanel>
+            <p:outputLabel value="Name"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{projectEdit.name}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:outputLabel value="Description"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{projectEdit.description}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:outputLabel value="TimeStart"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{projectEdit.timeStart}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:outputLabel value="TimeFinish"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{projectEdit.timeFinish}"/>
+        </p:outputPanel>
+
+
+        <p:commandButton action="#{projectEdit.save}" value="SAVE" style="margin-right:20px;" >
+        </p:commandButton>
+
+
+
+    </h:form>
+
+
+
+</h:body>
+</html>

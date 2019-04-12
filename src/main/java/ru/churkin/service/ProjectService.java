@@ -11,11 +11,14 @@ import ru.churkin.repository.ProjectRepositoryJPA;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 @Transactional
 @NoArgsConstructor
 public class ProjectService implements IProjectService {
+
+    Logger log = Logger.getLogger(this.getClass().getName());
 
     @Autowired
     ProjectRepositoryJPA projectRepository;

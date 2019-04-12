@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <h:outputLabel value="PROJECTS" style="font-size:30px; font-weight: bold">
+        </h:outputLabel>
+
+        <p:outputPanel>
+            <p:outputLabel value="New Project Name"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{projectListController.projectName}"/>
+        </p:outputPanel>
+        <p:commandButton update="projectTable" actionListener="#{projectListController.createProject()}" value="CREATE" style="margin-right:20px;" >
+        </p:commandButton>
+
+        <p:dataTable id = "projectTable" var="project" value="#{projectListController.projectsList}">
+            <p:column width = "400" headerText="Id">
+                <h:outputLabel value="#{project.id}" />
+            </p:column>
+
+            <p:column width = "400" headerText="Name">
+                <h:outputText value="#{project.name}" />
+            </p:column>
+
+            <p:column headerText="Description">
+                <h:outputText value="#{project.description}" />
+            </p:column>
+
+            <p:column  width = "140" headerText="">
+                <p:button outcome="project-edit" value="EDIT" icon="pi pi-edit" style="margin-right:20px;">
+                    <f:param name="projectId" value="#{project.id}" />
+                </p:button>
+            </p:column>
+            <p:column width = "140" headerText="">
+                <p:commandButton update="projectTable" actionListener="#{projectListController.removeProject(project.id)}" value="DEL" style="margin-right:20px;">
+                </p:commandButton>
+            </p:column>
+            <p:column width = "140" headerText="">
+                <p:button outcome="test" value="TASKS" icon="pi pi-pencil" style="margin-right:20px;">
+                </p:button>
+            </p:column>
+
+
+        </p:dataTable>
+
+
+
+    </h:form>
+
+</h:body>
+</html>
