@@ -9,8 +9,8 @@
 
 <f:metadata>
     <f:viewParam name="projectId" value="#{projectEdit.id}">
-    <f:viewAction action="#{projectEdit.init()}"/>
-</f:viewParam>
+        <f:viewAction action="#{projectEdit.init()}"/>
+    </f:viewParam>
 </f:metadata>
 
 <h:head>
@@ -19,6 +19,14 @@
 <h:body>
     <h:form>
 
+        <div id="header" style="width: 98%; height:60px; background-color: #eee; border: 1px solid #ddd; ">
+            <ui:insert name="header" >
+                <ui:include src="/templ/templHeader.xhtml" />
+            </ui:insert>
+        </div>
+        <p:spacer height = "20"></p:spacer>
+
+        <div id="content" style="width: 98%">
         <p:outputPanel>
             <p:outputLabel value="Name"/>
         </p:outputPanel>
@@ -47,6 +55,7 @@
 
         <p:commandButton action="#{projectEdit.save}" value="SAVE" style="margin-right:20px;" >
         </p:commandButton>
+        </div>
 
 
 

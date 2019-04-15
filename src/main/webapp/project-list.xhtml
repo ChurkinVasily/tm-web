@@ -13,6 +13,14 @@
 <h:body>
     <h:form>
 
+        <div id="header" style="width: 98%; height:60px; background-color: #eee; border: 1px solid #ddd; ">
+            <ui:insert name="header" >
+                <ui:include src="/templ/templHeader.xhtml" />
+            </ui:insert>
+        </div>
+        <p:spacer height = "20"></p:spacer>
+
+        <div id="content" style="width: 98%">
         <h:outputLabel value="PROJECTS" style="font-size:30px; font-weight: bold">
         </h:outputLabel>
 
@@ -25,13 +33,13 @@
         <p:commandButton update="projectTable" actionListener="#{projectListController.createProject()}" value="CREATE" style="margin-right:20px;" >
         </p:commandButton>
 
-        <p:dataTable id = "projectTable" var="project" value="#{projectListController.projectsList}">
+        <p:dataTable id = "projectTable" var="project" value="#{projectListController.projectsList()}">
             <p:column width = "400" headerText="Id">
                 <h:outputLabel value="#{project.id}" />
             </p:column>
 
             <p:column width = "400" headerText="Name">
-                <h:outputText value="#{project.name}" />
+                <h:outputLabel value="#{project.name}" />
             </p:column>
 
             <p:column headerText="Description">
@@ -39,22 +47,29 @@
             </p:column>
 
             <p:column  width = "140" headerText="">
-                <p:button outcome="project-edit" value="EDIT" icon="pi pi-edit" style="margin-right:20px;">
+                <p:button outcome="project-edit" value="EDIT" icon="fa fa-edit" style="margin-right:20px;">
                     <f:param name="projectId" value="#{project.id}" />
                 </p:button>
             </p:column>
             <p:column width = "140" headerText="">
-                <p:commandButton update="projectTable" actionListener="#{projectListController.removeProject(project.id)}" value="DEL" style="margin-right:20px;">
+                <p:commandButton update="projectTable" actionListener="#{projectListController.removeProject(project.id)}" icon="fa fa-trash" value="DEL" style="margin-right:20px;">
                 </p:commandButton>
             </p:column>
             <p:column width = "140" headerText="">
-                <p:button outcome="test" value="TASKS" icon="pi pi-pencil" style="margin-right:20px;">
+                <p:button outcome="task-list" value="TASKS" icon="fa fa-pencil" style="margin-right:20px;">
+                    <f:param name="projectId" value="#{project.id}" />
                 </p:button>
             </p:column>
 
 
         </p:dataTable>
-
+    </div>
+    <p:spacer height = "20"></p:spacer>
+    <div id="footer" style="width: 98%; height:60px; background-color: #eee; border: 1px solid #ddd; bottom: 20px; position: absolute;">
+        <ui:insert name="footer" >
+            <ui:include src="/templ/templFooter.xhtml" />
+        </ui:insert>
+    </div>
 
 
     </h:form>

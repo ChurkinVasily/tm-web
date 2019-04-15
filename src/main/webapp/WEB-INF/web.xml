@@ -36,8 +36,10 @@
         <!--&lt;!&ndash;<url-pattern>/faces/*</url-pattern>&ndash;&gt;-->
     <!--</servlet-mapping>-->
 
-
-
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
 </web-app>
 

@@ -20,7 +20,7 @@ public class ProjectListController  extends SpringBeanAutowiringSupport { // ext
     @Autowired
     IProjectService projectService;
 
-    private List<Project> projectsList = projectService.getProjectAll();
+    private List<Project> projects = projectService.getProjectAll();
 
     private String projectName;
     private String projectId;
@@ -36,6 +36,12 @@ public class ProjectListController  extends SpringBeanAutowiringSupport { // ext
 //                .getAutowireCapableBeanFactory().autowireBean(this);
 //        projectsList = projectService.getProjectAll();
 //    }
+
+    public List<Project> projectsList(){
+        return projectService.getProjectAll();
+    }
+
+
     public void removeProject(String id) {
         projectService.deleteProject(id);
     }

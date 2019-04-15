@@ -36,6 +36,25 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/task-list</from-outcome>
+            <to-view-id>/task-list.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>/task-edit</from-outcome>
+            <to-view-id>task-edit.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/task-edit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/task-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
 
 
 </faces-config>

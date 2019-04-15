@@ -8,11 +8,19 @@
         <view-id value="/test.xhtml" />
     </url-mapping>
     <url-mapping>
-        <pattern value="/proj" />
+        <pattern value="/project-list" />
         <view-id value="/project-list.xhtml" />
     </url-mapping>
     <url-mapping>
         <pattern value="/project-edit" />
         <view-id value="/project-edit.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/task-list" />
+        <view-id value="/task-list.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/task-edit" />
+        <view-id value="/task-edit.xhtml" />
     </url-mapping>
 </pretty-config>

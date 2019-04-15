@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="projectId" value="#{taskListController.projectId}">
+    </f:viewParam>
+</f:metadata>
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <div id="header" style="width: 98%; height:60px; background-color: #eee; border: 1px solid #ddd; ">
+            <ui:insert name="header" >
+                <ui:include src="/templ/templHeader.xhtml" />
+            </ui:insert>
+        </div>
+        <p:spacer height = "20"></p:spacer>
+
+        <div id="content" style="width: 98%">
+        <h:outputLabel value="TASKS" style="font-size:30px; font-weight: bold">
+        </h:outputLabel>
+
+        <p:outputPanel>
+            <p:outputLabel value="New Task Name"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <p:inputText value="#{taskListController.taskName}"/>
+        </p:outputPanel>
+        <p:commandButton update="taskTable" actionListener="#{taskListController.createTask()}" value="CREATE" style="margin-right:20px;" >
+        </p:commandButton>
+
+        <p:dataTable id = "taskTable" var="task" value="#{taskListController.taskList()}">
+            <p:column width = "400" headerText="Id">
+                <h:outputLabel value="#{task.id}" />
+            </p:column>
+
+            <p:column width = "400" headerText="Name">
+                <h:outputLabel value="#{task.name}" />
+            </p:column>
+
+            <p:column headerText="Description">
+                <h:outputText value="#{task.description}" />
+            </p:column>
+
+            <p:column  width = "140" headerText="">
+                <p:button outcome="task-edit" value="EDIT" icon="fa fa-edit" style="margin-right:20px;">
+                    <f:param name="taskId" value="#{task.id}" />
+                </p:button>
+            </p:column>
+            <p:column width = "140" headerText="">
+                <p:commandButton update="taskTable" actionListener="#{taskListController.removeTask(task.id)}" icon="fa fa-trash" value="DEL" style="margin-right:20px;">
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+        </div>
+        <p:spacer height = "20"></p:spacer>
+        <div id="footer" style="width: 98%; height:60px; background-color: #eee; border: 1px solid #ddd; bottom: 20px; position: absolute;">
+            <ui:insert name="footer" >
+                <ui:include src="/templ/templFooter.xhtml" />
+            </ui:insert>
+        </div>
+
+
+
+    </h:form>
+
+</h:body>
+</html>
