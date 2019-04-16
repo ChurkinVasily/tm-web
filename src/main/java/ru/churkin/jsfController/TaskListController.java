@@ -7,7 +7,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.churkin.api.IProjectService;
 import ru.churkin.api.ITaskService;
 import ru.churkin.api.IUserService;
-import ru.churkin.entity.Project;
 import ru.churkin.entity.Task;
 import ru.churkin.entity.User;
 

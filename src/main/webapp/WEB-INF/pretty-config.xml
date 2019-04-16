@@ -4,23 +4,23 @@
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
     <url-mapping>
-        <pattern value="/test" />
-        <view-id value="/test.xhtml" />
-    </url-mapping>
-    <url-mapping>
         <pattern value="/project-list" />
-        <view-id value="/project-list.xhtml" />
+        <view-id value="/WEB-INF/views/jsp/project-list.xhtml" />
     </url-mapping>
     <url-mapping>
         <pattern value="/project-edit" />
-        <view-id value="/project-edit.xhtml" />
+        <view-id value="/WEB-INF/views/jsp/project-edit.xhtml" />
     </url-mapping>
     <url-mapping>
         <pattern value="/task-list" />
-        <view-id value="/task-list.xhtml" />
+        <view-id value="/WEB-INF/views/jsp/task-list.xhtml" />
     </url-mapping>
     <url-mapping>
         <pattern value="/task-edit" />
-        <view-id value="/task-edit.xhtml" />
+        <view-id value="/WEB-INF/views/jsp/task-edit.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/" />
+        <view-id value="/WEB-INF/views/jsp/welcome.xhtml" />
     </url-mapping>
 </pretty-config>
