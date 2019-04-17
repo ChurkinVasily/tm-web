@@ -17,6 +17,7 @@ public class SpringWebAppInitializer extends FacesInitializer implements WebAppl
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(WebMvcConfig.class);
         appContext.register(DatabaseConfig.class);
+        appContext.register(SecurityConfig.class);
         appContext.setServletContext(servletContext);
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(appContext));
         servletContext.addListener(new ContextLoaderListener(appContext));
