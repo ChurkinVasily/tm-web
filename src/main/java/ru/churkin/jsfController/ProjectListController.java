@@ -5,7 +5,11 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.churkin.api.IProjectService;
+import ru.churkin.api.IUserService;
 import ru.churkin.entity.Project;
+import ru.churkin.entity.User;
+import ru.churkin.enums.Role;
+import ru.churkin.repository.UserRepositoryJPA;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,7 +24,7 @@ public class ProjectListController  extends SpringBeanAutowiringSupport { // ext
     @Autowired
     IProjectService projectService;
 
-    private List<Project> projects = projectService.getProjectAll();
+//    private List<Project> projects = projectService.getProjectAll();
 
     private String projectName;
     private String projectId;

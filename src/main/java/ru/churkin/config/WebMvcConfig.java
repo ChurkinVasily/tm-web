@@ -30,8 +30,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/free").setViewName("free");
-        registry.addViewController("/admin").setViewName("admin");
+//        registry.addViewController("/free").setViewName("free");
+//        registry.addViewController("/admin").setViewName("admin");
+        registry.addViewController("/login").setViewName("login");
     }
+
+
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
+//    }
 
 }

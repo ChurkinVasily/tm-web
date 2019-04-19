@@ -3,6 +3,7 @@ package ru.churkin.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.churkin.enums.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +20,13 @@ public class User {
     private String id;
     private String name;
     private String password;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+//    @Column
+//    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;

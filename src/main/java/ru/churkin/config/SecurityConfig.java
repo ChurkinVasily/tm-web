@@ -14,11 +14,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.churkin.enums.Role;
 import ru.churkin.service.UserDetailsServiceImpl;
 
+import java.util.logging.Logger;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalAuthentication
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    Logger log = Logger.getLogger(this.getClass().getName());
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -31,36 +35,43 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder())
+                ;
         auth.inMemoryAuthentication()
-                .withUser("user1").password(passwordEncoder().encode("pass1")).roles("USER")
+                .withUser("test").password(passwordEncoder().encode("test")).roles(Role.ADMIN.name())
                 .and()
-                .withUser("user2").password(passwordEncoder().encode("pass2")).roles("ADMIN")
+                .withUser("us").password(passwordEncoder().encode("us")).roles(Role.USER.name())
                 ;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login*").permitAll()
-                .antMatchers("/admin").hasRole(Role.ADMIN.name())
-                .anyRequest().hasAnyRole(Role.USER.name(), Role.ADMIN.name())
 
-                .and()
+        http.authorizeRequests()
+//                    .antMatchers("/login*").permitAll()
+                    .antMatchers("/project-list").hasRole(Role.ADMIN.name())
+                    .anyRequest().hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+//                .anyRequest().permitAll()
+                .anyRequest().authenticated()
+
+                    .and()
                 .formLogin()
-                .loginPage("/loginSecure.jsp")
-                /// j_check - указать в jsp <c:url value=""
-                .loginProcessingUrl("/j_check")
-//                .failureUrl("/index.jsp")
-                .failureUrl("/ma")
-                // j_username и j-password - параметры логина и пароля изф формы
-                .usernameParameter("j_userName")
-                .passwordParameter("j_password")
-                .permitAll()
-                .and()
+//                    .loginPage("/login")
+////                    /// j_check - указать в jsp <c:url value=""
+//                    .loginProcessingUrl("/j_check")
+////    //                .failureUrl("/index.jsp")
+////                    .failureUrl("/ma")
+////                    // j_username и j-password - параметры логина и пароля из формы
+//                    .defaultSuccessUrl("/task-list")
+//                    .usernameParameter("j_userName")
+//                    .passwordParameter("j_password")
+//                    .permitAll()
+                    .and()
                 .logout().permitAll()
-                .logoutSuccessUrl("/loginSecure.jsp")
-                .and()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login.jsp")
+                    .invalidateHttpSession(true)
+                    .and()
                 .csrf().disable();
     }
 }

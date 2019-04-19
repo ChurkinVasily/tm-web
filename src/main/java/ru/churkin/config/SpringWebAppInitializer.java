@@ -24,4 +24,5 @@ public class SpringWebAppInitializer extends FacesInitializer implements WebAppl
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
     }
+
 }

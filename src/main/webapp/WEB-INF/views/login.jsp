@@ -3,34 +3,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Index</title>
 </head>
 <body>
 
- <a href="main">MAIN</a> ||
- <a href="projects">PROJECTS</a> ||
- <a href="tasks">TASKS</a> ||
- <a href="reg">REGISTRATION</a>
 
-<p align="center" style="font-size: 30px; font-weight: bold"> Login page </p>
-
-<form name="login-user" method="post" action="/accept" align= "center">
-
-
-   <p><b>Name</b><br>
-    <input type="text" name="userName" size="40">
-    <%-- <input type="text" name="userName" size="40" value = "${user.name}"> --%>
-   </p>
-   <p><b>Password</b><br>
-    <input type="password" name="userPass" size="40">
-   </p>
-
-
-   <p>
-   <input type="submit" value="LOGIN">
-   </p>
-
-</form>
+<div style="width: 300px;">
+    <c:url value="/j_check" var="loginUrl" />
+        <form action="${loginUrl}" method="post">
+            <h2>Please sign in</h2>
+            <input type="text" name="j_username" placeholder="UserName">
+            <input type="password" name="j_password" placeholder="Password">
+            <button type="submit">Войти</button>
+        </form>
+</div>
 
 </body>
 </html>
