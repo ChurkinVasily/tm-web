@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service
+@Service("userDetailsService")
 //@Transactional
 @NoArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         builder = org.springframework.security.core.userdetails.User.withUsername(userName);
         builder.password(user.getPassword());
         List<Role> userRoles = new ArrayList<>();
-        userRoles.add(user.getRole());
+        userRoles.add(user.getRole()); // для одной роли. Если у юзера коллекция ролей, можно вернуть сразу ее
         List<String> roles = new ArrayList<>();
         for (Role role : userRoles) roles.add(role.toString());
         builder.roles(roles.toArray(new String[] {}));

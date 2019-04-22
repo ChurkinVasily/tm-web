@@ -9,7 +9,7 @@
 
 
 <div style="width: 300px;">
-    <c:url value="/j_check" var="loginUrl" />
+    <c:url value="/check" var="loginUrl" />
         <form action="${loginUrl}" method="post">
             <h2>Please sign in</h2>
             <input type="text" name="j_username" placeholder="UserName">

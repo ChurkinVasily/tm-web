@@ -9,10 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.churkin.enums.Role;
-import ru.churkin.service.UserDetailsServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     Logger log = Logger.getLogger(this.getClass().getName());
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -58,18 +58,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
 //                    .loginPage("/login")
 ////                    /// j_check - указать в jsp <c:url value=""
-//                    .loginProcessingUrl("/j_check")
-////    //                .failureUrl("/index.jsp")
-////                    .failureUrl("/ma")
+//                    .loginProcessingUrl("/check")
+//                    .failureUrl("/index.jsp")
+//                    .failureUrl("/ma")
+                .defaultSuccessUrl("/ma")
 ////                    // j_username и j-password - параметры логина и пароля из формы
-//                    .defaultSuccessUrl("/task-list")
 //                    .usernameParameter("j_userName")
 //                    .passwordParameter("j_password")
-//                    .permitAll()
+                    .permitAll()
                     .and()
                 .logout().permitAll()
                     .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login.jsp")
+                    .logoutSuccessUrl("/login")
                     .invalidateHttpSession(true)
                     .and()
                 .csrf().disable();

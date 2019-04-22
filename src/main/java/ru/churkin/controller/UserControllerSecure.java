@@ -22,30 +22,20 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.logging.Logger;
 
 @Controller
 public class UserControllerSecure {
 
+    Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Autowired
     IUserService userService;
 
+    @GetMapping(value = "/ma")
+    public String mainPage(Model model) {
 
-//    @GetMapping(value = "/ma")
-//    public String mainPage(Model model) {
-//
-//        return "index";
-//    }
-//
-//    @GetMapping(value = "/loginSecure")
-////    @PreAuthorize("!isAuthenticated()")
-//    public String check(Model model) {
-//        return "login";
-//    }
-//
-//    @GetMapping(value = "/mainXXX")
-////    @PreAuthorize("isAuthenticated()")
-//    public String user() {
-//        return "mainXXX";
-//    }
+        return "mainXXX";
+    }
 
 }
