@@ -3,6 +3,7 @@ package ru.churkin.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.churkin.enums.Role;
 
 import javax.persistence.*;
@@ -19,14 +20,12 @@ public class User {
     @Id
     private String id;
     private String name;
+//    private String username;
     private String password;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
-
-//    @Column
-//    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;

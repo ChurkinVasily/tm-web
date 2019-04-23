@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      >
 
 <body>
 <ui:composition>
@@ -14,6 +15,11 @@
         </p:button>
         <p:button outcome="project-list" value="PROJECTS"  style="margin-right:20px;">
         </p:button>
+        <!--<p:button outcome="user-list" value="USERS"  style="margin-right:20px;">-->
+        <!--</p:button>-->
+
+        <h:outputLink value="${pageContext.request.contextPath}/login?logout">LOGOUT</h:outputLink>
+
     </div>
 
 </ui:composition>

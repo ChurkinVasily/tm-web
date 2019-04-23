@@ -1,6 +1,9 @@
 package ru.churkin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,7 @@ import ru.churkin.api.IUserService;
 import ru.churkin.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Logger;
 
@@ -38,7 +42,8 @@ public class UserController {
         return "main";
     }
 
-    @GetMapping(value = "/login")
+    ////////// -----------------убрать лишнюю букву N в конце слова /login
+    @GetMapping(value = "/loginn")
     public String loginUser(HttpServletRequest req, Model model) {
         return "login";
     }
@@ -91,9 +96,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
-    public String logoutUser(HttpServletRequest req) {
-        req.getSession().invalidate();
-        return "redirect:" + "main";
+    public String logoutUser(HttpServletRequest req, HttpServletResponse res) {
+//        req.getSession().invalidate();
+//        return "redirect:" + "main";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(req, res, auth);
+        }
+        return "redirect:/login?logout";
     }
 
 

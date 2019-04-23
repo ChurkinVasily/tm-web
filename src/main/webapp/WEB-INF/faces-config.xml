@@ -18,7 +18,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>/project-edit</from-outcome>
-            <to-view-id>project-edit.xhtml</to-view-id>
+            <to-view-id>/project-edit.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -37,7 +37,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>/task-edit</from-outcome>
-            <to-view-id>task-edit.xhtml</to-view-id>
+            <to-view-id>/task-edit.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -48,5 +48,14 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
+    <!--<navigation-rule>-->
+        <!--<navigation-case>-->
+            <!--<from-outcome>/user-list</from-outcome>-->
+            <!--<to-view-id>/user-list.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+    <!--</navigation-rule>-->
+
+
 
 </faces-config>

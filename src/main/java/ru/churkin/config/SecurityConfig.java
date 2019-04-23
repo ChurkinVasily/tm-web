@@ -3,6 +3,10 @@ package ru.churkin.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,6 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.churkin.enums.Role;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
 import java.util.logging.Logger;
 
 @Configuration
@@ -48,23 +54,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//                    .antMatchers("/login*").permitAll()
-                    .antMatchers("/project-list").hasRole(Role.ADMIN.name())
-                    .anyRequest().hasAnyRole(Role.USER.name(), Role.ADMIN.name())
-//                .anyRequest().permitAll()
+                .antMatchers("/").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                .antMatchers("/welcome").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                .antMatchers("/admin", "/project-list", "/user-list").hasRole(Role.ADMIN.name())
+
+
+                    .antMatchers("/login").permitAll()
+                .anyRequest().permitAll()
                 .anyRequest().authenticated()
 
                     .and()
                 .formLogin()
-//                    .loginPage("/login")
-////                    /// j_check - указать в jsp <c:url value=""
-//                    .loginProcessingUrl("/check")
-//                    .failureUrl("/index.jsp")
-//                    .failureUrl("/ma")
-                .defaultSuccessUrl("/ma")
-////                    // j_username и j-password - параметры логина и пароля из формы
-//                    .usernameParameter("j_userName")
-//                    .passwordParameter("j_password")
+                .loginPage("/login")
+                .defaultSuccessUrl("/welcome")
+                .failureUrl("/login?error")
+                .usernameParameter("username")
+                .passwordParameter("password")
+
+
+
+
+//                .formLogin()
+////                    .loginPage("/login")
+//////                    /// j_check - указать в jsp <c:url value=""
+////                    .loginProcessingUrl("/check")
+////                    .failureUrl("/index.jsp")
+////                    .failureUrl("/ma")
+//                .defaultSuccessUrl("/ma")
+//////                    // j_username и j-password - параметры логина и пароля из формы
+////                    .usernameParameter("j_userName")
+////                    .passwordParameter("j_password")
                     .permitAll()
                     .and()
                 .logout().permitAll()
@@ -74,4 +93,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .csrf().disable();
     }
+
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+
+
 }

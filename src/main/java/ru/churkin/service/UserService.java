@@ -1,13 +1,18 @@
 package ru.churkin.service;
 
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.churkin.api.IUserService;
+import ru.churkin.entity.Task;
 import ru.churkin.entity.User;
+import ru.churkin.enums.Role;
 import ru.churkin.repository.UserRepositoryJPA;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,7 +26,11 @@ public class UserService implements IUserService {
     @Override
     public boolean createNewUser(String name, String pass) {
         if (name == null || name.isEmpty() || pass == null || pass.isEmpty()) return false;
-        User user = new User(name, pass);
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(pass);
+
+        User user = new User(name, hashPassword);
         boolean isConsist = false;
         for (User cUser : userRepository.findAll()) {
             if (!isConsist && name.equals(cUser.getName())) {
@@ -31,6 +40,7 @@ public class UserService implements IUserService {
         if (isConsist) {
             return false;
         }
+        user.setRole(Role.USER);
         userRepository.save(user);
         return true;
     }
@@ -58,4 +68,19 @@ public class UserService implements IUserService {
         if (userInBase.getPassword().equals(pass)) return true;
         return false;
     }
+
+//    @Override
+//    public List<User> getUsersAll() {
+//        return userRepository.findAll();
+//    }
+//
+//    @Override
+//    public boolean removeUserById(@Nullable String id) {
+//        if (id == null || id.isEmpty()) return false;
+//        Optional<User> optionalUser = userRepository.findById(id);
+//        User user = optionalUser.isPresent() ? optionalUser.get() : null;
+//        if (user == null) return false;
+//        userRepository.delete(user);
+//        return true;
+//    }
 }

@@ -69,6 +69,7 @@ public class TaskEditController extends SpringBeanAutowiringSupport {
             task.setTimeFinish(this.timeFinish);
             task.setProject(projectService.findProjectById(projectId));
             taskService.updateTask(task);
+            logger.info("------------------------------success");
             return "success";
         }
         return "failure";
