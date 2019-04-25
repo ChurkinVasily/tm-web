@@ -95,16 +95,16 @@ public class UserController {
         return "redirect:" + "reg";
     }
 
-    @GetMapping(value = "/logout")
-    public String logoutUser(HttpServletRequest req, HttpServletResponse res) {
-//        req.getSession().invalidate();
-//        return "redirect:" + "main";
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(req, res, auth);
-        }
-        return "redirect:/login?logout";
-    }
+    /// ----------не нужно после введения Spring Security
 
-
+//    @GetMapping(value = "/logout")
+//    public String logoutUser(HttpServletRequest req, HttpServletResponse res) {
+////        req.getSession().invalidate();
+////        return "redirect:" + "main";
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null){
+//            new SecurityContextLogoutHandler().logout(req, res, auth);
+//        }
+//        return "redirect:/login?logout";
+//    }
 }

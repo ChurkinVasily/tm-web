@@ -43,7 +43,6 @@ public class TaskListController extends SpringBeanAutowiringSupport {
     private String taskName;
     private String taskId;
     private Task task;
-//    private User user = userService.findUserById("103714de-96a2-4138-ad6a-94169e099336");
     String username = securityService.findLoggedInUsername();
     User user = userService.findUserByName(username);
 

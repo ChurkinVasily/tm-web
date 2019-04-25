@@ -7,7 +7,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.churkin.api.IUserService;
-import ru.churkin.entity.Task;
 import ru.churkin.entity.User;
 import ru.churkin.enums.Role;
 import ru.churkin.repository.UserRepositoryJPA;
@@ -69,10 +68,18 @@ public class UserService implements IUserService {
         return false;
     }
 
-//    @Override
-//    public List<User> getUsersAll() {
-//        return userRepository.findAll();
-//    }
+    @Override
+    public List<User> getUserAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean updateUser(@Nullable User user) {
+        if (user == null) return false;
+        userRepository.save(user);
+        return true;
+    }
+
 //
 //    @Override
 //    public boolean removeUserById(@Nullable String id) {

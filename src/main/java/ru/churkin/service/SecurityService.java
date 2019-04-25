@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.churkin.api.ISecurityService;
 
-import java.security.Principal;
 import java.util.logging.Logger;
 
 @Service

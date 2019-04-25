@@ -35,13 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
     }
 
-
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
-//    }
-
-    ////----------- Этот бин подключает файл validstion.properties
+    ////----------- Этот бин подключает файл validation.properties
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

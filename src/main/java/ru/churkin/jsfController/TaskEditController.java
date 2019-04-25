@@ -34,7 +34,6 @@ public class TaskEditController extends SpringBeanAutowiringSupport {
     private String description;
     private String timeStart;
     private String timeFinish;
-    private String text3;
     private String projectId;
 
     private Task task = new Task();

@@ -1,5 +1,6 @@
 package ru.churkin.api;
 
+import org.jetbrains.annotations.Nullable;
 import ru.churkin.entity.User;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public interface IUserService {
 
     boolean validate(String name, String pass);
 
-//    List<User> getUsersAll();
-//
-//    boolean removeUserById(String id);
+    List<User> getUserAll();
+
+    boolean updateUser(@Nullable User user);
 
 }

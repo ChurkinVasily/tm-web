@@ -54,6 +54,4 @@ public class Task {
                 ", user='" + user.getName() + '\'' +
                 '}';
     }
-
-
 }

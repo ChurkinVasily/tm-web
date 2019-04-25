@@ -32,8 +32,8 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     }
 
     // ---------- ТАК ТОЖЕ РАБОТАЕТ
-    //public class SpringWebAppInitializer extends FacesInitializer implements WebApplicationInitializer {
-/// add extends FacesInitializer when comment FacesServlet in web.xml
+//    public class SpringWebAppInitializer extends FacesInitializer implements WebApplicationInitializer {
+///// add extends FacesInitializer when comment FacesServlet in web.xml
 //    @Override
 //    public void onStartup(ServletContext servletContext) throws ServletException {
 //        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
