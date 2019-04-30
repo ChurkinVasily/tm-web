@@ -9,10 +9,10 @@ Web-приложение для управления проектами и за�
 
 Используемые технологии:
 
-Java 8,
-Maven 3,
-Lombok 1.18,
-Hibernate 5.3
-Spring (Context 5.1.5, DataJpa 2.1.4, MVC, Security)
-Jsp, JSF, PrimeFaces
-База данных MySQL 5
+- Java 8,
+- Maven 3,
+- Lombok 1.18,
+- Hibernate 5.3
+- Spring (Context 5.1.5, DataJpa 2.1.4, MVC, Security)
+- Jsp, JSF, PrimeFaces
+- База данных MySQL 5
